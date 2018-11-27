@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="indexhead"></div>
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white">
+        <div class="logo">
+            <a href="#" class="simple-text logo-normal">
+                Litchi CTF
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link " href="index.html" th:href="@{/admin/challengelist}">
+                        <i class="material-icons">dashboard</i>
+                        <p>题目列表</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./notifications.html" th:href="@{/admin/notice}">
+                        <i class="material-icons">notifications</i>
+                        <p>通知发布</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./notifications.html" th:href="@{/admin/addchallenge}">
+                        <i class="material-icons">notifications</i>
+                        <p>添加题目</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./notifications.html" th:href="@{/admin/noticelist}">
+                        <i class="material-icons">notifications</i>
+                        <p>通知列表</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <!--<div th:replace="navbar"></div>-->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">编辑题目</h4>
+                                <p class="card-category">在这里可以添加题目</p>
+                            </div>
+                            <div class="card-body">
+                                <form th:action="@{/admin/editChallenge}" id="editChallenge" method="post">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">cid</label>
+                                                <input type="text" class="form-control" th:value="${challenge.cid}" name="cid">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">title</label>
+                                                <input type="text" class="form-control" th:value="${challenge.title}" name="title">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">link</label>
+                                                <input type="text" class="form-control" th:value="${challenge.link}" name="link">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">type(1代表web，2代表pwn，3代表misc，4代表cypto，6代表re)</label>
+                                                <input type="text" class="form-control" name="type" th:value="${challenge.type}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">flag</label>
+                                                <input type="text" class="form-control" name="flag" th:value="${challenge.flag}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">description</label>
+                                                <textarea class="form-control" rows="5" name="description" th:text="${challenge.description}"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form th:action="@{/admin/uploadFile}" id="uploadfile" method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <label class="bmd-label-floating">file</label>
+                                                <input type="file" name="file" class="filestyle" data-classButton="btn btn-primary" data-input="false">
+                                                <span th:if="${not #strings.isEmpty(msg)}" th:text="${msg}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" form="editChallenge" class="btn btn-primary pull-right">编辑题目</button>
+                                    <button type="submit" form="uploadfile" class="btn btn-primary pull-right">文件上传</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="footer"></div>
+    </div>
+</div>
+<div th:replace="js"></div>
+</body>
+</html>

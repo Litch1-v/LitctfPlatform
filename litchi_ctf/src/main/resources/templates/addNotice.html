@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="indexhead"></div>
+<body class="" onload="alertmsg()">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white">
+        <div class="logo">
+            <a href="#" class="simple-text logo-normal">
+                Litchi CTF
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html" th:href="@{/admin/challengelist}">
+                        <i class="material-icons">dashboard</i>
+                        <p>题目列表</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./notifications.html" th:href="@{/admin/noticelist}">
+                        <i class="material-icons">notifications</i>
+                        <p>通知列表</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./notifications.html" th:href="@{/admin/notice}">
+                        <i class="material-icons">notifications</i>
+                        <p>通知发布</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./notifications.html" th:href="@{/admin/addchallenge}">
+                        <i class="material-icons">notifications</i>
+                        <p>添加题目</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <!--<div th:replace="navbar"></div>-->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">发布通知</h4>
+                                <p class="card-category">在这里可以发布通知</p>
+                            </div>
+                            <div class="card-body">
+                                <form th:action="@{/admin/editNotice}" id="editChallenge" method="post">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">通知内容</label>
+                                                <textarea class="form-control" rows="5" name="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                    <button type="submit" form="editChallenge" class="btn btn-primary pull-right">发布通知</button>
+                                    <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="footer"></div>
+    </div>
+</div>
+<script th:inline="javascript" th:if="${not #strings.isEmpty(msg)}">
+    var msg=[[${msg}]]
+    function alertmsg() {
+        alert(msg);
+    }
+</script>
+<div th:replace="js"></div>
+</body>
+</html>

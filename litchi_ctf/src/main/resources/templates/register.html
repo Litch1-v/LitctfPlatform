@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="head"></div>
+<body class="login-page sidebar-collapse">
+<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100"
+     id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
+                LitchiCTF </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="page-header header-filter"
+     style="background-image: url('img/bg7.jpg'); background-size: cover; background-position: top center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-11 ml-auto mr-auto">
+                <div class="card card-login">
+                    <form class="form"  id="registerForm" method="POST" action="" th:action="@{/register}">
+                        <div class="card-header card-header-info text-center">
+                            <h4 class="card-title">注册</h4>
+                            <p class="card-category" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                        </div>
+                        <p class="description text-center">已经有账号？<a href="" th:href="@{/login}">戳我登录</a></p>
+                            <div class="row">
+                            <div class="col-md-5">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">face</i>
+                                    </span>
+                                </div>
+                                <input type="text" name="username" class="form-control" placeholder="用户名">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">face</i>
+                                    </span>
+                                </div>
+                                <input type="text" name="trueName" class="form-control" placeholder="真实姓名">
+                            </div>
+                            </div>
+                            <div class="col-md-5 offset-1">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                </div>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="密码">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                </div>
+                                <input type="password" name="confirmpassword" class="form-control" placeholder="再次输入密码">
+                            </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-5">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">email</i>
+                                    </span>
+                                </div>
+                                <input type="text" name="email" class="form-control" placeholder="邮箱">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">library_books</i>
+                                    </span>
+                                </div>
+                                <input type="text" name="classNumber" class="form-control" placeholder="班级:例：2017211805">
+                            </div>
+                            </div>
+                                <div class="col-md-5 offset-1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="material-icons">lock_outline</i>
+                                </span>
+                                        </div>
+                                        <input type="text" name="vrifycode" class="form-control" placeholder="验证码">
+                                        <img alt="验证码" onclick = "this.src='/defaultKaptcha?d='+new Date()*1" th:src="@{/defaultKaptcha}" />
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="footer text-center">
+                            <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">注册</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<div th:replace="footer"></div>
+</div>
+
+</body>
+</html>

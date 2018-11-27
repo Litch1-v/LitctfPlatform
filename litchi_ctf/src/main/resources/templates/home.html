@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="head"></div>
+<body class="landing-page sidebar-collapse">
+<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="#">
+                LitchiCTF</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('')" th:style="'background:url(' + @{/img/bg7.jpg} + ');'">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="title"><div id="slogan" data-text="we are BUPTer"></div></h1>
+                <h4>这里是LitchiCTF平台，希望大家通过这个平台一起学习一起进步</h4>
+                <br>
+                <br>
+                <a href="login.html" th:href="@{/login}" target="_blank" class="btn btn-danger btn-raised btn-lg">
+                    <i class="fa fa-play"></i>开始CTF之旅
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="footer"></div>
+<script th:src="@{/js/bg-wordChange.js}" src="js/bg-wordChange.js"></script>
+</body>
+</html>

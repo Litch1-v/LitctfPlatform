@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="indexhead"></div>
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white">
+        <div class="logo">
+            <a href="#" class="simple-text logo-normal">
+                Litchi CTF
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link " href="index.html" th:href="@{/index}">
+                        <i class="material-icons">dashboard</i>
+                        <p>面板</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="Challenge.html" th:href="@{/challenge}">
+                        <i class="material-icons">content_paste</i>
+                        <p>训练</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="rank.html" th:href="@{/rank}">
+                        <i class="material-icons">trending_up</i>
+                        <p>排名</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./notifications.html" th:href="@{/notice}">
+                        <i class="material-icons">notifications</i>
+                        <p>通知</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <div th:replace="navbar"></div>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header card-header-info" >
+                            <h4 class="card-title">公告</h4>
+                            <p class="card-category">训练有关公告都会发布在这里噢</p>
+                        </div>
+                        <div class="card-body" id="announcement" >
+                            <div class="alert alert-warning" th:each="notice:${lastNoticeList}">
+                                <span th:text="${notice.getDescription()}">
+                       这里是纵哥粉丝一号
+                                </span>
+                                <span th:text="${#dates.format(notice.getDate(),'yyyy-MM-dd')}">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header card-header-primary" data-background-color="purple">
+                                <h4 class="card-title">大佬</h4>
+                                <p class="card-category">快来膜拜大佬吧</p>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-primary">
+                                    <tr><th>ID</th>
+                                        <th>用户名</th>
+                                        <th>真实姓名</th>
+                                    </tr></thead>
+                                    <tbody>
+                                    <tr th:each="userFive : ${firstFive}">
+                                        <td th:text="${userFiveStat.index+1}"></td>
+                                        <td th:text="${userFive.getUsername()}">P1umer</td>
+                                        <td th:text="${userFive.getTrueName()}">100</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card">
+                            <div class="card-header card-header-success" data-background-color="purple">
+                                <h4 class="card-title">统计</h4>
+                                <p class="card-category">注册人数</p>
+                            </div>
+                            <div class="card-body">
+                                <h5><span id="register_person" class="text-info text-center" th:text="${session.local.userNumber}">113</span></h5>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header card-header-danger" data-background-color="purple">
+                                <h4 class="card-title">排名</h4>
+                                <p class="card-category">你的排名</p>
+                            </div>
+                            <div class="card-body">
+                                <h5><span id="first_student" class="text-info text-center" th:text="${rank}">5</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-success">
+                                <div class="ct-chart" id="websiteViewsChart"></div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">你已经解决的挑战总数  </h4>
+                                <p class="card-category">冲鸭！！！</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div th:replace="footer"></div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var web = [[${solved.webSolved.length}]];
+    var misc =[[${solved.miscSolved.length}]];
+    var pwn =[[${solved.pwnSolved.length}]];
+    var cypto =[[${solved.cyptoSolved.length}]];
+    var re=[[${solved.reSolved.length}]];
+</script>
+<div th:replace="js"></div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+spring:
+#数据库的配置
+  datasource:
+    url: **********
+    username: ********
+    password: ********
+    druid:
+      #初始化时建立物理连接的个数
+      initial-size: 5
+      # 最大连接池数量
+      max-active: 30
+      # 最小连接池数量
+      min-idle: 5
+      # 获取连接时最大等待时间，单位毫秒
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 连接保持空闲而不被驱逐的最小时间
+      min-evictable-idle-time-millis: 300000
+      # 用来检测连接是否有效的sql，要求是一个查询语句
+      validation-query: SELECT 1 FROM DUAL
+      # 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+      test-while-idle: true
+      # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-borrow: false
+      # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-return: false
+      # 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+      pool-prepared-statements: false
+      # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。
+      max-pool-prepared-statement-per-connection-size: 0
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计
+      filters: [wall,stat]
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=50
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  path: /var/log/
+  level:
+    com.litchi: info
+    root: warn
+  pattern:
+    dateformat: yyyy-mm-dd HH
+    file: '%d{yyyy-MMM-dd HH:mm:ss} %-5level %logger{15} - %msg%n'

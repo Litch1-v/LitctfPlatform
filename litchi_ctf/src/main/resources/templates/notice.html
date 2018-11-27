@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="indexhead"></div>
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white">
+        <div class="logo">
+            <a href="#" class="simple-text logo-normal">
+                Litchi CTF
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html" th:href="@{/index}">
+                        <i class="material-icons">dashboard</i>
+                        <p>面板</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="Challenge.html" th:href="@{/challenge}">
+                        <i class="material-icons">content_paste</i>
+                        <p>训练</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="rank.html" th:href="@{/rank}">
+                        <i class="material-icons">trending_up</i>
+                        <p>排名</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./notifications.html" th:href="@{/notice}">
+                        <i class="material-icons">notifications</i>
+                        <p>通知</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <div th:replace="navbar"></div>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-tabs card-header-primary">
+                                <div class="nav-tabs-navigation">
+                                    <div class="nav-tabs-wrapper">
+                                        <span class="nav-tabs-title">Tasks:</span>
+                                        <ul class="nav nav-tabs" data-tabs="tabs">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#profile" data-toggle="tab">
+                                                    <i class="material-icons">bug_report</i> 有关问题
+                                                    <div class="ripple-container"></div>
+                                                    <div class="ripple-container"></div></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="#messages" data-toggle="tab">
+                                                    <i class="material-icons">code</i> 关于本站
+                                                    <div class="ripple-container"></div>
+                                                    <div class="ripple-container"></div></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#settings" data-toggle="tab">
+                                                    <i class="material-icons">cloud</i> 通知列表
+                                                    <div class="ripple-container"></div>
+                                                    <div class="ripple-container"></div></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="profile">
+                                        <div class="tim-typo">
+                                            <h3><span class="tim-note">关于本站</span>
+                                                <a>1、Flag格式是啥？</a><br>
+                                                 Flag标准格式为LitCTF{可见字符},如果题目Flag非标准形式，会给出额外说明。<br>
+                                                <br><a>2、为啥我看到的网页很混乱……？</a>
+                                                <br> 推荐使用Chrome浏览器或者火狐浏览器，以获得最佳的浏览效果，如果仍然有问题（前端写得太菜）,请联系管理员<br>
+                                                <br><a>3、为啥我正常访问网站时，出现了不可名状的错误</a>
+                                                <br> 可能是后端的问题（写得太菜）,请联系管理员<br>
+                                                <br><a>4、忘记密码怎么办，怎么更改密码？</a>
+                                                <br> 请联系管理员，既可修改密码</h3>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="messages">
+                                        <div class="tim-typo">
+                                            <h3><span class="tim-note">关于本站</span>
+                                                本站是基于springboot搭建的CTF平台，使用的框架包括但不仅限于<br>
+                                                SpringMVC<br>
+                                                Thymeleaf<br>
+                                                Shiro<br>
+                                                Kaptcha<br>
+                                                Mybatis<br>
+                                                前端参考：TSCTF ，MATERIAL-UI<br>
+                                                本站的源码后续可能会开源在github上（代码写的太烂需要重构整理)<br>
+                                                关于本次的开发总结也会记录后续也会记录在个人主页上（太懒还没写）<br>
+                                            </h3>
+                                        </div>
+                                        <div class="tim-typo">
+                                            <h3><span class="tim-note">联系方式</span>
+                                                QQ：494678840@qq.com<br>
+                                                GitHub：https://github.com/buptchk<br>
+                                                个人主页：http://litch1.club<br>
+                                                邮箱：494678840@qq.com<br>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="settings">
+                                        <table class="table table-hover">
+                                            <thead class="text-primary">
+                                            <tr><th>内容</th>
+                                                <th>日期</th>
+                                            </tr></thead>
+                                            <tbody>
+                                            <tr th:each="notice:${local.getNoticeList()}">
+                                                <td th:text="${notice.date}"></td>
+                                                <td th:text="${notice.description}">P1umer</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="footer"></div>
+</div>
+</div>
+<div th:replace="js"></div>
+</body>
+</html>
