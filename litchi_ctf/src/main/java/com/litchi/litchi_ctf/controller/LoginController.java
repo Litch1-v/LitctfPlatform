@@ -24,6 +24,8 @@ import java.util.Map;
  */
 @Controller
 public class LoginController {
+    @Autowired
+    private UserService userService;
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     private DefaultKaptcha defaultKaptcha;
@@ -47,10 +49,10 @@ public class LoginController {
         }
     }
     @PostMapping(value = "/login")
-    public String doLogin(String vrifycode,String username, String password, HttpSession session, Map<String,String> map) {
+    public String doLogin(String vrifycode,String username, String password, HttpSession session, Map<String,String> messageMap) {
         String kaptchaId=(String) session.getAttribute("vrifyCode");
         if (!(vrifycode.equals(kaptchaId))){
-            map.put("msg","您输入的验证码有误");
+            messageMap.put("msg","您输入的验证码有误");
             return "login";
         }
         Subject sub = SecurityUtils.getSubject();
@@ -59,19 +61,17 @@ public class LoginController {
             sub.login(token);
         } catch (UnknownAccountException e) {
             log.error("对用户[{}]进行登录验证,验证未通过,用户不存在", username);
-            map.put("msg","您登录的用户不存在");
+            messageMap.put("msg","您登录的用户不存在");
             token.clear();
             return "login";
-        } catch (ExcessiveAttemptsException e) {
-            log.error("对用户[{}]进行登录验证,验证未通过,错误次数过多", username);
-            token.clear();
-            return "login";
-        } catch (IncorrectCredentialsException e){
+        }  catch (IncorrectCredentialsException e){
             log.error("对用户[{}]进行登录验证，验证未通过，密码不正确",username);
-            map.put("msg","您的密码错误，请重新登录");
+            messageMap.put("msg","您的密码错误，请重新登录");
+            token.clear();
             return "login";
         }
-        User user=(User) sub.getSession().getAttribute("USER_SESSION");
+        User user=(User)sub.getSession().getAttribute("USER_SESSION");
+        user=userService.getUserById(user.getUid());
         log.info("用户[{}]成功登陆",username);
         session.setAttribute("user",user);
         return "redirect:/index";

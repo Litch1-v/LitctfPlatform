@@ -1,5 +1,12 @@
 package com.litchi.litchi_ctf.pojo;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * @param  solvedChallenge 对应的是一个键为类型码，
+ * 值为一个该类型解题id链表的hashmap
+ */
 public class User {
     private Integer uid;
     private String username;
@@ -8,90 +15,17 @@ public class User {
     private String email;
     private String role;
     private String trueName;
-    private int[] solvedWebChallenges;
-    private int[] solvedCodeChallenges;
-    private int[] solvedMiscChallenges;
-    private int[] solvedPwnChallenges;
-    private int[] solvedReChallenges;
-    private int[] solvedCyptoChallenges;
 
-    public int getSolvedNumber() {
+    public Integer getSolvedNumber() {
         return solvedNumber;
     }
 
-    public void setSolvedNumber(int solvedNumber) {
+    public void setSolvedNumber(Integer solvedNumber) {
         this.solvedNumber = solvedNumber;
     }
 
-    private int solvedNumber;
-
-    public int[] getSolvedCodeChallenges() {
-        return solvedCodeChallenges;
-    }
-
-    public void setSolvedCodeChallenges(int[] solvedCodeChallenges) {
-        this.solvedCodeChallenges = solvedCodeChallenges;
-    }
-
-    public int[] getSolvedMiscChallenges() {
-        return solvedMiscChallenges;
-    }
-
-    public void setSolvedMiscChallenges(int[] solvedMiscChallenges) {
-        this.solvedMiscChallenges = solvedMiscChallenges;
-    }
-
-    public int[] getSolvedPwnChallenges() {
-        return solvedPwnChallenges;
-    }
-
-    public void setSolvedPwnChallenges(int[] solvedPwnChallenges) {
-        this.solvedPwnChallenges = solvedPwnChallenges;
-    }
-
-    public int[] getSolvedReChallenges() {
-        return solvedReChallenges;
-    }
-
-    public void setSolvedReChallenges(int[] solvedReChallenges) {
-        this.solvedReChallenges = solvedReChallenges;
-    }
-
-    public int[] getSolvedCyptoChallenges() {
-        return solvedCyptoChallenges;
-    }
-
-    public void setSolvedCyptoChallenges(int[] solvedCyptoChallenges) {
-        this.solvedCyptoChallenges = solvedCyptoChallenges;
-    }
-
-    public int[] getSolvedWebChallenges() {
-        return solvedWebChallenges;
-    }
-
-    public void setSolvedWebChallenges(int[] solvedChallenges) {
-        this.solvedWebChallenges = solvedChallenges;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getTrueName() {
-        return trueName;
-    }
-
-    public void setTrueName(String trueName) {
-        this.trueName = trueName;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
+    private Integer solvedNumber;
+    private Map<Integer, List<Integer>> solvedChallenge=new HashMap<>();
 
     public Integer getUid() {
         return uid;
@@ -105,7 +39,7 @@ public class User {
         return username;
     }
 
-    public void setStudentId(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -125,12 +59,35 @@ public class User {
         this.classNumber = classNumber;
     }
 
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getTrueName() {
+        return trueName;
+    }
+
+    public void setTrueName(String trueName) {
+        this.trueName = trueName;
+    }
+
+    public Map<Integer, List<Integer>> getSolvedChallenge() {
+        return solvedChallenge;
+    }
+
+    public void setSolvedChallenge(Map<Integer, List<Integer>> solvedChallenge) {
+        this.solvedChallenge = solvedChallenge;
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache updateCheck="false" name="shiroCache">
+<ehcache updateCheck="false">
     <defaultCache
             maxElementsInMemory="10000"
             eternal="false"

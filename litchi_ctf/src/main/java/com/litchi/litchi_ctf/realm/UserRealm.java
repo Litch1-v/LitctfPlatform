@@ -28,7 +28,8 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
             throws AuthenticationException {
         String principal = (String) token.getPrincipal();
-        User user = Optional.ofNullable(usermapper.findUserByusername(principal)).orElseThrow(UnknownAccountException::new);
+        //使用Optional来解决nullException的问题，这里的usermapper.getUserByUsername
+        User user = Optional.ofNullable(usermapper.getUserByUsername(principal)).orElseThrow(UnknownAccountException::new);
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(principal, user.getPassword(), getName());
         Session session = SecurityUtils.getSubject().getSession();
         session.setAttribute("USER_SESSION", user);

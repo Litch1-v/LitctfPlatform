@@ -20,7 +20,7 @@ public class AdminChallengeController {
     @GetMapping("/admin/challenge/{id}")
     public ModelAndView getChallengeDetail(@PathVariable(name = "id") int cid, HttpSession session){
         ModelAndView mv=new ModelAndView("challengeDetail");
-        User user=(User)session.getAttribute("user");
+        User user=(User)session.getAttribute("uid");
         Challenge challenge=challengeService.getChallengeById(cid);
         mv.addObject("challenge",challenge);
         mv.addObject("user",user);

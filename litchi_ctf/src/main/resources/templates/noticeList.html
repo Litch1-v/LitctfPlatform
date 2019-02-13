@@ -84,10 +84,10 @@
                                         <th>删除通知</th>
                                     </tr></thead>
                                     <tbody>
-                                    <tr style="cursor: pointer" th:each="notice:${local.getNoticeList()}">
-                                        <td th:text="${notice.nid}"></td>
-                                        <td th:text="${notice.description}">P1umer</td>
-                                        <td><a th:href="'/admin/deleteNotice/'+${notice.getNid()}"><button class="btn btn-danger">删除题目</button></a></td>
+                                    <tr style="cursor: pointer" th:each="notice:${noticeList}">
+                                        <td th:text="${notice.getNid()}"></td>
+                                        <td th:text="${notice.getDescription()}">P1umer</td>
+                                        <td><a th:href="'/admin/deleteNotice/'+${notice.getNid()}"><button class="btn btn-danger">删除通知</button></a></td>
                                     </tr>
                                     </tbody>
                                 </table>

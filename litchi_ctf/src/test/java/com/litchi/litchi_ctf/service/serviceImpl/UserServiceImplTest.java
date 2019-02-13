@@ -14,6 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.xml.ws.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest()
@@ -22,9 +25,9 @@ public class UserServiceImplTest {
     private UserService userService;
     @Test
     public void main() {
-     User user=userService.getLoginUser("admin13");
-     int test=user.getSolvedWebChallenges().length;
-     System.out.println(test);
+     User user=userService.getUserById(1);
+        List<Integer> typeSolvedChallenge=user.getSolvedChallenge().get(2);
+        System.out.println(typeSolvedChallenge.contains(3));
     }
 
 }

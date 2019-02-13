@@ -42,13 +42,13 @@
         <div th:replace="navbar"></div>
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" >
                     <!--密码学题目-->
-                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="cyptoChallenge:${local.challengeList.getCyptoChallenges()}" th:with="sucess=${#lists.contains(solved.getCyptoSolved(),cyptoChallenge.getCid())}">
+                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="cyptoChallenge:${typeChallengeMap.get(4)}" th:with="sucess=${#lists.contains(CYPTO_SOLVED,cyptoChallenge.getCid())}">
                         <div class="card card-stats" th:style="${sucess}?'background-color:rgba(0,188,212)'">
                             <div class="card-header card-header-info card-header-icon">
                                 <div class="card-icon">
-                                    <i class="material-icons" th:text="${#lists.contains(solved.getCyptoSolved(),cyptoChallenge.getCid())}?'check':'security'">security</i>
+                                    <i class="material-icons" th:text="${#lists.contains(CYPTO_SOLVED,cyptoChallenge.getCid())}?'check':'security'">security</i>
                                 </div>
                                 <p class="card-category" th:style="${sucess}?'color:white'" th:text="${cyptoChallenge.getTitle()}">简单的sql注入</p>
                                 <button th:style="${sucess}?'color:rgba(0,188,212);background-color:white'" th:attr="data-target='#challenge'+${cyptoChallenge.getCid()}" class="btn btn-info" data-toggle="modal" data-target="#myModal" data-background-color="orange">
@@ -58,35 +58,35 @@
                                 <p class="card-category" th:style="${sucess}?'color:white'" th:text="'解出本题的人数：'+${cyptoChallenge.getSolvedNumber()}">1</p>
                             </div>
                             <div class="card-footer">
-                                <div class="stats" th:style="${#lists.contains(solved.getCyptoSolved(),cyptoChallenge.getCid())}?'color:white'">
+                                <div class="stats" th:style="${#lists.contains(CYPTO_SOLVED,cyptoChallenge.getCid())}?'color:white'">
                                     ID: <span th:text="${cyptoChallenge.getCid()}">02</span><br>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--web题目-->
-                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="webChallenge:${local.challengeList.getWebChallenges()}">
-                        <div class="card card-stats" th:style="${#lists.contains(solved.getWebSolved(),webChallenge.getCid())}?'background-color:rgba(255,152,0)'">
+                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="webChallenge:${typeChallengeMap.get(1)}">
+                        <div class="card card-stats" th:style="${#lists.contains(WEB_SOLVED,webChallenge.getCid())}?'background-color:rgba(255,152,0)'">
                             <div class="card-header card-header-warning card-header-icon">
                                 <div class="card-icon">
-                                    <i class="material-icons" th:text="${#lists.contains(solved.getWebSolved(),webChallenge.getCid())}?check:http">http</i>
+                                    <i class="material-icons" th:text="${#lists.contains(WEB_SOLVED,webChallenge.getCid())}?check:http">http</i>
                                 </div>
-                                <p class="card-category" th:style="${#lists.contains(solved.getWebSolved(),webChallenge.getCid())}?'color:white'" th:text="${webChallenge.getTitle()}">简单的sql注入</p>
-                                <button th:style="${#lists.contains(solved.getWebSolved(),webChallenge.getCid())}?'background-color:white;color:rgba(255,152,0)'" th:attr="data-target='#challenge'+${webChallenge.getCid()}" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                                <p class="card-category" th:style="${#lists.contains(WEB_SOLVED,webChallenge.getCid())}?'color:white'" th:text="${webChallenge.getTitle()}">简单的sql注入</p>
+                                <button th:style="${#lists.contains(WEB_SOLVED,webChallenge.getCid())}?'background-color:white;color:rgba(255,152,0)'" th:attr="data-target='#challenge'+${webChallenge.getCid()}" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
                                     查看
                                     <div class="ripple-container"></div>
                                 </button>
-                                <p class="card-category" th:style="${#lists.contains(solved.getWebSolved(),webChallenge.getCid())}?'color:white'" th:text="'解出本题的人数：'+${webChallenge.solvedNumber}">简单的sql注入</p>
+                                <p class="card-category" th:style="${#lists.contains(WEB_SOLVED,webChallenge.getCid())}?'color:white'" th:text="'解出本题的人数：'+${webChallenge.solvedNumber}">简单的sql注入</p>
                             </div>
                             <div class="card-footer">
-                                <div class="stats" th:style="${#lists.contains(solved.getWebSolved(),webChallenge.getCid())}?'color:white'">
+                                <div class="stats" th:style="${#lists.contains(WEB_SOLVED,webChallenge.getCid())}?'color:white'">
                                     ID: <span  th:text="${webChallenge.getCid()}">02</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--pwn题目-->
-                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="pwnChallenge:${local.challengeList.getPwnChallenges()}" th:with="sucess=${#lists.contains(solved.getPwnSolved(),pwnChallenge.getCid())}">
+                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="pwnChallenge:${typeChallengeMap.get(2)}" th:with="sucess=${#lists.contains(PWN_SOLVED,pwnChallenge.getCid())}">
                         <div class="card card-stats" th:style="${sucess}?'background-color:rgba(76,175,80)'">
                             <div class="card-header card-header-success card-header-icon">
                                 <div class="card-icon">
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <!--misc题目-->
-                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="miscChallenge:${local.challengeList.getMiscChallenges()}" th:with="sucess=${#lists.contains(solved.getMiscSolved(),miscChallenge.getCid())}">
+                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="miscChallenge:${typeChallengeMap.get(3)}" th:with="sucess=${#lists.contains(MISC_SOLVED,miscChallenge.getCid())}">
                         <div class="card card-stats" th:style="${sucess}?'background-color:rgba(244, 67, 54)'">
                             <div class="card-header card-header-danger card-header-icon">
                                 <div class="card-icon">
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <!--re题目-->
-                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="reChallenge:${local.challengeList.getReChallenges()}" th:with="sucess=${#lists.contains(solved.getReSolved(),reChallenge.getCid())}">
+                    <div class="col-lg-3 col-md-6 col-sm-6" th:each="reChallenge:${typeChallengeMap.get(6)}" th:with="sucess=${#lists.contains(RE_SOLVED,reChallenge.getCid())}">
                         <div class="card card-stats" th:style="${sucess}?'background-color:rgba(156, 39, 176)'">
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="card-icon">
@@ -153,48 +153,50 @@
         </div>
     </div>
     <div th:replace="footer"></div>
-    <div th:each="allChallenge : ${local.getChallengeList().allChallenges}" class="modal fade" th:id="'challenge'+${allChallenge.cid}" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 th:text="${allChallenge.title}" class="modal-title text-center" id="myModalLabel" style="width: 100%">这里是这一题的标题
-                        <button type="button" class="close" style="outline: none" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <p class="text-center card-category challenge-description" th:text="${allChallenge.getDescription()}">这里是这一题的描述</p>
-                    <p class="text-center card-category challenge-description" th:if="${not #strings.isEmpty(allChallenge.link)}"><a href="#" th:href="${allChallenge.link}">相关链接</a> </p>
-                    <div class="col-lg-8 col-md-8 col-sm-8 offset-2">
-                        <form th:id="'flag'+${allChallenge.getCid()}" action="/challenge" method="post">
-                            <div class="input-group">
-                                <span class="input-group-addon answer-icon"><i class="material-icons">flag</i></span>
-                                <div class="form-group is-empty">
-                                    <input type="hidden" name="cid" th:value="${allChallenge.getCid()}">
-                                    <input type="text" placeholder="Flag" class="form-control challenge-input" name="flag">
-                                    <span class="material-input"></span>
+    <div th:each="allChallengeMap : ${typeChallengeMap}">
+        <div th:each="allchallenge:${allChallengeMap.getValue()}" class="modal fade" th:id="'challenge'+${allchallenge?.getCid()}" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 th:text="${allchallenge?.getTitle()}" class="modal-title text-center" id="myModalLabel" style="width: 100%">这里是这一题的标题
+                            <button type="button" class="close" style="outline: none" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center card-category challenge-description" th:text="${allchallenge?.getDescription()}">这里是这一题的描述</p>
+                        <p class="text-center card-category challenge-description" th:if="${not #strings.isEmpty(allchallenge?.getLink())}"><a href="#" th:href="${allchallenge?.getLink()}">相关链接</a> </p>
+                        <div class="col-lg-8 col-md-8 col-sm-8 offset-2">
+                            <form th:id="'flag'+${allchallenge?.getCid()}" action="/challenge" method="post">
+                                <div class="input-group">
+                                    <span class="input-group-addon answer-icon"><i class="material-icons">flag</i></span>
+                                    <div class="form-group is-empty">
+                                        <input type="hidden" name="cid" th:value="${allchallenge?.getCid()}">
+                                        <input type="text" placeholder="Flag" class="form-control challenge-input" name="flag">
+                                        <span class="material-input"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon answer-icon"><i class="material-icons">lock_outline</i></span>
-                                <div class="form-group is-empty">
-                                    <input style="width: 140px" type="text" placeholder="验证码" class="form-control challenge-input" name="vrifycode" >
-                                    <span class="material-input"></span>
-                                </div>
-                                <span th:class="input-group-addon" style="margin-left: 20px">
+                                <div class="input-group">
+                                    <span class="input-group-addon answer-icon"><i class="material-icons">lock_outline</i></span>
+                                    <div class="form-group is-empty">
+                                        <input style="width: 140px" type="text" placeholder="验证码" class="form-control challenge-input" name="vrifycode" >
+                                        <span class="material-input"></span>
+                                    </div>
+                                    <span th:class="input-group-addon" style="margin-left: 20px">
                                     <img alt="验证码" onclick = "this.src='/defaultKaptcha?d='+new Date()*1" th:src="@{/defaultKaptcha}"/>
                                 </span>
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                        <button type="submit" th:form="'flag'+${allChallenge.getCid()}"  class="btn btn-danger btn-simple">提交
-                        </button>
+                    <div class="modal-footer">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                            <button type="submit" th:form="'flag'+${allchallenge?.getCid()}"  class="btn btn-danger btn-simple">提交
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
     </div>
 </div>
 </div>

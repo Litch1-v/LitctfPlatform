@@ -117,7 +117,7 @@
                                                 <th>日期</th>
                                             </tr></thead>
                                             <tbody>
-                                            <tr th:each="notice:${local.getNoticeList()}">
+                                            <tr th:each="notice:${noticeList}">
                                                 <td th:text="${notice.date}"></td>
                                                 <td th:text="${notice.description}">P1umer</td>
                                             </tr>

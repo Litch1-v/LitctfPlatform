@@ -1,6 +1,12 @@
 package com.litchi.litchi_ctf.service;
 
+import com.litchi.litchi_ctf.pojo.Notice;
+
+import java.util.List;
+
 public interface NoticeService {
-    public int saveNotice(String description);
-    public int deleteNotice(int nid);
+     int saveNotice(String description);
+     int deleteNotice(int nid);
+      List<Notice> getNoticeList();
+
 }

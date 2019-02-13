@@ -6,6 +6,7 @@ public class Challenge {
     private Integer type;
     private String description;
     private int solvedNumber;
+    private String link;
 
     public void setCid(Integer cid) {
         this.cid = cid;
@@ -26,9 +27,6 @@ public class Challenge {
     public void setLink(String link) {
         this.link = link;
     }
-
-    private String link;
-
 
     public Integer getCid() {
         return cid;
@@ -61,8 +59,6 @@ public class Challenge {
     public void setType(Integer type) {
         this.type = type;
     }
-
-
 
     public int getSolvedNumber() {
         return solvedNumber;

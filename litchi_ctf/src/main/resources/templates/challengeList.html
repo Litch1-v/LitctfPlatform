@@ -85,7 +85,7 @@
                                         <th>编辑题目</th>
                                     </tr></thead>
                                     <tbody>
-                                    <tr style="cursor: pointer" th:each="challenge:${local.challengeList.allChallenges}">
+                                    <tr style="cursor: pointer" th:each="challenge:${allChallengeList}">
                                         <td th:text="${challenge.cid}"></td>
                                         <td th:text="${challenge.title}">P1umer</td>
                                         <td><a th:href="'/admin/deleteChallenge/'+${challenge.cid}"><button class="btn btn-danger">删除题目</button></a></td>

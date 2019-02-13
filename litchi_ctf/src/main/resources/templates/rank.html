@@ -84,10 +84,10 @@
                                         <th>解题数</th>
                                     </tr></thead>
                                     <tbody>
-                                    <tr th:each="user:${rankList}">
+                                    <tr th:each="user:${userRankList}">
                                         <td th:text="${userStat.index+1}"></td>
-                                        <td th:text="${user.username}">P1umer</td>
-                                        <td th:text="${user.solvedNumber}">100</td>
+                                        <td th:text="${user.getUsername()}">P1umer</td>
+                                        <td th:text="${user.getSolvedNumber()}">100</td>
                                     </tr>
                                     </tbody>
                                 </table>

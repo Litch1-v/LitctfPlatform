@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.alibaba.druid.wall.WallFilterMBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -17,11 +18,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 配置druid，配置管理后台的servlet
+ * ServletRegistration和web监控的filter
+ */
 @Configuration
 public class DruidConfig {
     /**
-     * @function 添加
-     * @return
+     * 使用ConfigurationProperties将配置中的datasource与datasource绑定起来
+     * @return Druid类型的DataSource
      */
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
@@ -29,19 +34,17 @@ public class DruidConfig {
         return DruidDataSourceBuilder.create().build();
     }
 
-    //配置Druid的监控
-    //1、配置一个管理后台的Servlet
+
     @Bean
     public ServletRegistrationBean statViewServlet(){
         ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         Map<String,String> initParams = new HashMap<>();
-        initParams.put("loginUsername","******");
-        initParams.put("loginPassword","******");
+        initParams.put("loginUsername","admin");
+        initParams.put("loginPassword","123456");
         bean.setInitParameters(initParams);
         return bean;
     }
 
-    //2、配置一个web监控的filter
     @Bean
     public FilterRegistrationBean webStatFilter(){
         FilterRegistrationBean bean = new FilterRegistrationBean(new WebStatFilter());

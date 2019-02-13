@@ -1,9 +1,9 @@
 spring:
 #数据库的配置
   datasource:
-    url: **********
-    username: ********
-    password: ********
+    url: jdbc:mysql://localhost:3306/my_ctf?serverTimezone=GMT%2B8
+    username: root
+    password:
     druid:
       #初始化时建立物理连接的个数
       initial-size: 5
@@ -39,9 +39,6 @@ mybatis:
     map-underscore-to-camel-case: true
 logging:
   path: /var/log/
-  level:
-    com.litchi: info
-    root: warn
   pattern:
     dateformat: yyyy-mm-dd HH
     file: '%d{yyyy-MMM-dd HH:mm:ss} %-5level %logger{15} - %msg%n'
