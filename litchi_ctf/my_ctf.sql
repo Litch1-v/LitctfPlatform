@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 24/12/2018 22:52:48
+ Date: 14/02/2019 10:44:57
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `challenge`  (
   `description` tinytext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `solved_number` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`cid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for notice
@@ -68,5 +68,11 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`uid`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- View structure for rankview
+-- ----------------------------
+DROP VIEW IF EXISTS `rankview`;
+CREATE ALGORITHM = UNDEFINED DEFINER = `skip-grants user`@`skip-grants host` SQL SECURITY DEFINER VIEW `rankview` AS SELECT solved_number rid,count(*) from user GROUP BY solved_number ;
 
 SET FOREIGN_KEY_CHECKS = 1;
