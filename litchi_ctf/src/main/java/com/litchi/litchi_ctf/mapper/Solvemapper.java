@@ -14,6 +14,7 @@ public interface Solvemapper {
     @Select("SELECT cid,type FROM challenge where cid in(SELECT cid FROM solve where uid=#{uid})")
     @ResultType(Map.class)
     void listTypeGroupSolvedByUserId(@Param("uid")Integer uid,ResultHandler resultHandler);
+    @Insert("Insert into solve(cid,uid) values(#{cid},#{uid})")
     int insertNewSolve(@Param("cid") int cid,@Param("uid") int uid);
     @Update("UPDATE challenge set solved_number=solved_number+1 where cid=#{cid}")
     int addOneSolvedNumber(int cid);
