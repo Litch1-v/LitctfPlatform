@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface Rankmapper {
-    @Select("SELECT * FROM(SELECT uid FROM solve GROUP BY uid ORDER BY count(cid) DESC) a union (select uid from user)")
+    @Select("SELECT uid FROM(SELECT uid FROM solve GROUP BY uid ORDER BY count(cid) DESC) a union (select uid from user)")
     public int[] getRanklist();
     @Select("SELECT user_number from rank order by rid")
     public int[] listCountSolvedUserNumber();

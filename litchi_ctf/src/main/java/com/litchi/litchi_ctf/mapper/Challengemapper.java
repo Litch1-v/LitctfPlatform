@@ -8,11 +8,11 @@ import java.util.List;
 
 @Mapper
 public interface Challengemapper {
-    @Select("Select * From challenge where type=#{type}")
+    @Select("Select title,cid,flag,type,link,description,solved_number From challenge where type=#{type}")
     public List<Challenge> listChallengesByType(int type);
-    @Select("Select * From challenge where cid=#{cid}")
+    @Select("Select title,cid,flag,type,link,description,solved_number From challenge where cid=#{cid}")
     public Challenge getChallengeById(int cid);
-    @Select("Select * From challenge")
+    @Select("Select title,cid,flag,type,link,description,solved_number From challenge")
     public List<Challenge> listAllChallenges();
     @Update("UPDATE challenge set title=#{title},flag=#{flag},description=#{description},link=#{link} WHERE cid=#{cid}")
     public int updateChallenge(Challenge challenge);

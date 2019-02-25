@@ -10,7 +10,7 @@ public interface Noticemapper {
     /**
      * @return 返回按时间排序后的通知列表（最新的排在最前面）
      */
-    @Select("SELECT * FROM notice ORDER BY date DESC")
+    @Select("SELECT nid,date,description FROM notice ORDER BY date DESC")
     public List<Notice> listAllNotices();
     @Insert("INSERT INTO notice(date,description) values (CURRENT_TIME,#{description})")
     public int insertNotice(String description);

@@ -15,9 +15,9 @@ import java.util.List;
 
 @Mapper
 public interface Usermapper {
-    @Select("Select * from user where username=#{username}")
+    @Select("Select uid,username,password,class_number,email,role,true_name,solved_number from user where username=#{username}")
     public User getUserByUsername(String username);
-    @Select("Select * from user where uid=#{uid}")
+    @Select("Select uid,username,password,class_number,email,role,true_name,solved_number from user where uid=#{uid}")
     public User getUserById(Integer uid);
     @Insert("Insert into user(username,true_name,password,class_number,email) values (#{username},#{trueName},#{password},#{classNumber}" +
             ",#{email})")
@@ -26,7 +26,7 @@ public interface Usermapper {
     public int SelectUserNumber();
     @Select("SELECT solved_number from user where uid=#{uid}")
     public Integer getUserSolvedNumberById(Integer id);
-    @Select("SELECT * from user order by solved_number desc")
+    @Select("SELECT uid,username,password,class_number,email,role,true_name,solved_number from user order by solved_number desc")
     public List<User> listUsersDescOrderBySolvedNumber();
     @Update("UPDATE user set solved_number=solved_number-1 where uid in (SELECT  uid from solve where cid=#{cid})")
     int updateSolvedNumberCauseByChallengeDelete(int cid);
