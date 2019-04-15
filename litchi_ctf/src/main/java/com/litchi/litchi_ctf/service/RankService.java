@@ -7,5 +7,4 @@ import java.util.List;
 public interface RankService {
     List<User> getUserRankList();
     int getUserRankByUid(int uid);
-
 }

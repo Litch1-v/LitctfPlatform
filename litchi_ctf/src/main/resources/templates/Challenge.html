@@ -166,7 +166,7 @@
                         <p class="text-center card-category challenge-description" th:text="${allchallenge?.getDescription()}">这里是这一题的描述</p>
                         <p class="text-center card-category challenge-description" th:if="${not #strings.isEmpty(allchallenge?.getLink())}"><a href="#" th:href="${allchallenge?.getLink()}">相关链接</a> </p>
                         <div class="col-lg-8 col-md-8 col-sm-8 offset-2">
-                            <form th:id="'flag'+${allchallenge?.getCid()}" action="/challenge" method="post">
+                            <form th:id="'flag'+${allchallenge?.getCid()}" th:action="@{/challenge}" method="post">
                                 <div class="input-group">
                                     <span class="input-group-addon answer-icon"><i class="material-icons">flag</i></span>
                                     <div class="form-group is-empty">
@@ -182,7 +182,7 @@
                                         <span class="material-input"></span>
                                     </div>
                                     <span th:class="input-group-addon" style="margin-left: 20px">
-                                    <img alt="验证码" onclick = "this.src='/defaultKaptcha?d='+new Date()*1" th:src="@{/defaultKaptcha}"/>
+                                    <img alt="验证码" th:src="@{/defaultKaptcha}"/>
                                 </span>
                                 </div>
                             </form>
@@ -205,6 +205,7 @@
     function alertmsg() {
         alert(msg);
     }
+
 </script>
 <div th:replace="js"></div>
 </body>

@@ -37,8 +37,8 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-logging:
-  path: /var/log/
-  pattern:
-    dateformat: yyyy-mm-dd HH
-    file: '%d{yyyy-MMM-dd HH:mm:ss} %-5level %logger{15} - %msg%n'
+server:
+  port: 8083
+litchi:
+  file-location: "./"
+

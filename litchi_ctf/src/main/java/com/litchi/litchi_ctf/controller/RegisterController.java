@@ -2,8 +2,7 @@ package com.litchi.litchi_ctf.controller;
 
 import com.litchi.litchi_ctf.pojo.User;
 import com.litchi.litchi_ctf.service.UserService;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang3.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -31,12 +29,14 @@ public class RegisterController {
         String kaptchaId=(String) session.getAttribute("vrifyCode");
         if (!vrifycode.equals(kaptchaId)){
             map.put("msg","您输入的验证码有误");
+            session.setAttribute("vrifyCode", RandomUtils.nextInt(10000,99999));
             return "register";
         }
         try {
             userService.insertUser(user);
         }catch (DuplicateKeyException e){
             map.put("msg","您输入的用户名已经存在");
+            session.setAttribute("vrifyCode", RandomUtils.nextInt(10000,99999));
             return "register";
         }
         log.info("用户[{}]已经成功注册",user.getUsername());

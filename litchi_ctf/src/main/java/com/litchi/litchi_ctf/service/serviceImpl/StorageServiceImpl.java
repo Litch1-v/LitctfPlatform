@@ -1,6 +1,7 @@
 package com.litchi.litchi_ctf.service.serviceImpl;
 
 import com.litchi.litchi_ctf.service.StorageService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,10 @@ import java.util.stream.Stream;
 
 @Service(value = "StorageService")
 public class StorageServiceImpl implements StorageService{
+    @Value("${litchi.file-location}")
+    private static String fileLocation="./";
     // 文件保存的路径
-    private final Path rootLocation = Paths.get("/var/www/upload/");
+    private final Path rootLocation = Paths.get(fileLocation);
 
     @Override
     public void init() {

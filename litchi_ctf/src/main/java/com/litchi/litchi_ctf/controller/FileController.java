@@ -40,7 +40,7 @@ public class FileController {
         try {
             storageService.init();
             storageService.store(file);
-            msg="您已经成功上传文件"+file.getOriginalFilename()+"路径为/var/user"+file.getOriginalFilename();
+            msg="您已经成功上传文件"+file.getOriginalFilename()+"路径为/file/"+file.getOriginalFilename();
             log.info("上传文件"+file.getOriginalFilename());
         }
         catch (Exception e){

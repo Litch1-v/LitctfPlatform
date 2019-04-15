@@ -6,6 +6,7 @@ import com.litchi.litchi_ctf.pojo.User;
 import com.litchi.litchi_ctf.service.ChallengeService;
 import com.litchi.litchi_ctf.service.SolveService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +47,7 @@ public class ChallengeController {
             msg="对不起，您的验证码有误";
             ModelAndView mv=getChanllenge(session);
             mv.addObject("msg",msg);
+            session.setAttribute("vrifyCode", RandomUtils.nextInt(10000,99999));
             return mv;
         }
         if (challenge.getFlag().equals(flag)){
@@ -69,6 +71,7 @@ public class ChallengeController {
             }
             else {
                 msg="这题您已经做过了，换换别题吧";
+                session.setAttribute("vrifyCode", RandomUtils.nextInt(10000,99999));
             }
             ModelAndView mv=getChanllenge(session);
             mv.addObject("msg",msg);
@@ -78,6 +81,7 @@ public class ChallengeController {
             ModelAndView mv=getChanllenge(session);
             msg="对不起，您答错了";
             mv.addObject("msg",msg);
+            session.setAttribute("vrifyCode", RandomUtils.nextInt(10000,99999));
             return mv;
         }
     }

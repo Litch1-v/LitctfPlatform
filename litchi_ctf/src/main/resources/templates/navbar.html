@@ -16,6 +16,11 @@
                 <li class="nav-item">
                     <a class="nav-link" th:text="'你好，'+${user.username}">你好，陈宏锟</a>
                 </li>
+                <li th:if="${user.role}==1">
+                    <a href="#" th:href="@{/admin/index}" id="admin" class="nav-link">
+                        管理界面
+                    </a>
+                </li>
                 <li>
                     <a href="#" th:href="@{/sign_out}" id="logout" style="cursor:pointer">
                         <i class="material-icons" style="font-size: 20px">power_settings_new</i>
