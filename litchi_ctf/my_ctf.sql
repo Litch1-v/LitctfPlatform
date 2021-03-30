@@ -72,4 +72,4 @@ CREATE TABLE `user`  (
 SET FOREIGN_KEY_CHECKS = 1;
 
 DROP VIEW IF EXISTS `rankview`;
-CREATE VIEW `rankview` AS SELECT solved_number rid,count(*) from user GROUP BY solved_number ;
+CREATE VIEW `rankview` AS SELECT solved_number rid,solved_number,count(*) user_number from user GROUP BY solved_number ;
